@@ -34,15 +34,12 @@ func getCAIds() []string {
 
 // CheckDomain makes the request to crt.sh
 func CheckDomain(domain string) {
-	ro := grequests.RequestOptions{
-		Params: map[string]string{"CAName": "%s Encrypt%"},
+	ids := getCAIds()
+	for _, id := range ids {
+		ro := grequests.RequestOptions{
+			Params: map[string]string{"Identity": domain, "iCAID": id},
+		}
+		res := request(&ro)
+		fmt.Println(res)
 	}
-
-	res, err := grequests.Get(baseURL, &ro)
-
-	if err != nil {
-		log.Fatal("Unable to make request:", err)
-	}
-
-	fmt.Println(res)
 }
