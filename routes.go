@@ -1,10 +1,13 @@
-package main
+package lechecker
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 func main() {
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
+	r.GET("/", func(c *gin.Context) {
+		CheckDomain("google.com")
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
