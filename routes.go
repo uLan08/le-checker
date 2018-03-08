@@ -4,7 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func main() {
+// Serve runs web server
+func Serve() {
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
 		CheckDomain("google.com")
